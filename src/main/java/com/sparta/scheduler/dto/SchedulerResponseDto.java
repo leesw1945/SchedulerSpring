@@ -1,9 +1,11 @@
 package com.sparta.scheduler.dto;
 
 import com.sparta.scheduler.entity.Scheduler;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
+@Getter
 public class SchedulerResponseDto {
 
     private long id;

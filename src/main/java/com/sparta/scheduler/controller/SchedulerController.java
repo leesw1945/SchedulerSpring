@@ -3,19 +3,18 @@ package com.sparta.scheduler.controller;
 import com.sparta.scheduler.dto.SchedulerRequestDto;
 import com.sparta.scheduler.dto.SchedulerResponseDto;
 import com.sparta.scheduler.service.SchedulerService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class SchedulerController {
 
     private final SchedulerService schedulerService;
 
-    public SchedulerController(SchedulerService schedulerService){
-        this.schedulerService = schedulerService;
-    }
 
     // 생성 일정 등록
     @PostMapping("/scheduler")
