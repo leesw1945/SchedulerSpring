@@ -16,13 +16,13 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 // 해당 클래스에 Auditing 기능을 포함 시켜준다.
 @EntityListeners(AuditingEntityListener.class)
-public class Timestamped {
+public abstract class Timestamped {
 
     // 엔티티 객체가 생성되어서 저장될 때 시간 값이 자동 저장된다.
     @CreatedDate
     // 최초 시간만 저장되고 수정되면 안 되기 때문에 updatable 옵션을 false로 둔다.
     @Column(updatable = false)
-    @jakarta.persistence.Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime createdAt;
 
     // 조회한 엔티티 객체 값을 변경할 때 변경된 시간이 자동 저장된다.

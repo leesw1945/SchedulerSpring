@@ -10,7 +10,6 @@ import java.time.LocalDate;
 
 @Entity
 @Getter
-@Setter
 @Table(name = "scheduler")
 @NoArgsConstructor
 public class Scheduler extends  Timestamped {
