@@ -25,26 +25,26 @@ public class SchedulerController {
 
     // 선택 일정 조회
     @GetMapping("/scheduler/{schedulerId}")
-    public Integer getSelectScheduler(@PathVariable Integer schedulerId){
-        return schedulerService.getSelectScheduler(schedulerId);
+    public SchedulerResponseDto getScheduler(@PathVariable long schedulerId){
+        return schedulerService.getScheduler(schedulerId);
     }
 
     // 전체 조회
     @GetMapping("/scheduler")
     public List<SchedulerResponseDto> getScheduler(){
-        return schedulerService.getScheduler();
+        return schedulerService.getAllScheduler();
     }
 
     // 선택 일정 수정
     @PutMapping("/scheduler/{schedulerId}")
-    public Integer updateScheduler(@PathVariable Integer schedulerId, @RequestBody SchedulerRequestDto requestDto){
-        return schedulerService.updateScheduler(schedulerId, requestDto);
+    public SchedulerResponseDto updateScheduler(@PathVariable Long schedulerId, @RequestBody SchedulerRequestDto requestDto){
+        return schedulerService.updateScheduler(schedulerId, requestDto, requestDto.getPassword());
     }
 
     // 선택 일정 삭제
     @DeleteMapping("/scheduler/{schedulerId}")
-    public Integer deleteScheduler(@PathVariable Integer schedulerId){
-        return schedulerService.deleteScheduler(schedulerId);
+    public Long deleteScheduler(@PathVariable Long schedulerId, @RequestBody SchedulerRequestDto requestDto){
+        return schedulerService.deleteScheduler(schedulerId, requestDto.getPassword());
     }
 
 
