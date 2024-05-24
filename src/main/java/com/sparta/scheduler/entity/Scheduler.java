@@ -38,7 +38,6 @@ public class Scheduler extends  Timestamped {
         this.contents = requestDto.getContents();
         this.manager = requestDto.getManager();
         this.password = requestDto.getPassword();
-        this.date = LocalDate.now();
     }
 
     public void update(SchedulerRequestDto requestDto) {
