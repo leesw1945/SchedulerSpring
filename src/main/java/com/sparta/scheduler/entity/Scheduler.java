@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -18,19 +19,19 @@ public class Scheduler extends  Timestamped {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title",nullable = true, length = 500)
+    @Column(name = "title",nullable = false, length = 500)
     private String title;
 
-    @Column(name = "contents",nullable = true)
+    @Column(name = "contents",nullable = false)
     private String contents;
 
-    @Column(name = "manager",nullable = true)
+    @Column(name = "manager",nullable = false)
     private String manager;
 
-    @Column(name = "password",nullable = true)
+    @Column(name = "password",nullable = false)
     private String password;
 
-    @Column(name = "date", nullable = true)
+    @Column(name = "date")
     private LocalDate date;
 
     public Scheduler(SchedulerRequestDto requestDto) {
@@ -45,5 +46,8 @@ public class Scheduler extends  Timestamped {
         this.contents = requestDto.getContents();
         this.manager = requestDto.getManager();
     }
+
+    @OneToMany(mappedBy = "scheduler")
+    private List<Comment> comments;
 
 }
