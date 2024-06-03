@@ -17,11 +17,11 @@ public class CommentResponseDto {
     private LocalDateTime createdAt;
     private Long schedulerId;
 
-    public CommentResponseDto(Long id, String comment, String username, Long scheduleId, LocalDateTime createdAt) {
+    public CommentResponseDto(Long id, String commentcontent, String userid, Long schedulerId, LocalDateTime createdAt) {
         this.id = id;
         this.commentcontent = commentcontent;
         this.userid = userid;
-        this.schedulerId = scheduleId;
+        this.schedulerId = schedulerId;
         this.createdAt = createdAt;
     }
 

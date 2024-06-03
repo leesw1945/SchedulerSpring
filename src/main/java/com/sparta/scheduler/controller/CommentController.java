@@ -27,11 +27,21 @@ public class CommentController {
 
     @PatchMapping("{commentId}")
     public ResponseEntity<CommentResponseDto> update(
-            @PathVariable(name = "scheduleId") long scheduleId,
+            @PathVariable(name = "schedulerId") long schedulerId,
             @PathVariable(name = "commentId") long commentId,
             @RequestBody CommentUpdateRequestDto commentUpdateRequestDto) {
 
-        return ResponseEntity.ok().body(commentService.update(scheduleId, commentId, commentUpdateRequestDto));
+        return ResponseEntity.ok().body(commentService.update(schedulerId, commentId, commentUpdateRequestDto));
+    }
+
+    @DeleteMapping("{commentId}")
+    public ResponseEntity<String> delete(
+            @PathVariable(name = "schedulerId") long schedulerId,
+            @PathVariable(name = "commentId") long commentId,
+            @RequestBody String userid) {
+
+        commentService.delete(schedulerId, commentId, userid);
+        return ResponseEntity.ok().body("성공적으로 댓글 삭제");
     }
 
 }

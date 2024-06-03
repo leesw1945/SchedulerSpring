@@ -33,7 +33,7 @@ public class CommentService {
     }
 
     @Transactional
-    public CommentResponseDto update(Long schedulerId, Long commentId, CommentUpdateRequestDto commentUpdateRequestDto) {
+    public CommentResponseDto update(long schedulerId, long commentId, CommentUpdateRequestDto commentUpdateRequestDto) {
 
         // DB에 일정이 존재하지 않는 경우
         schedulerRepository.findById(schedulerId)
@@ -50,6 +50,23 @@ public class CommentService {
 
         comment.update(commentUpdateRequestDto.getCommentcontent());
         return CommentResponseDto.toDto(comment);
+    }
+
+    @Transactional
+    public void delete(Long schedulerId, Long commentId, String userid) {
+
+        // DB에 일정이 존재하지 않는 경우
+        schedulerRepository.findById(schedulerId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 id에 맞는 일정 데이터가 없습니다. 아이다 : " + schedulerId));
+        // 해당 댓글이 DB에 존재하지 않는 경우
+        Comment comment = commentRepository.findById(BigInteger.valueOf(commentId))
+                .orElseThrow(() -> new DataNotFoundException("해당 댓글이 DB에 존재하지 않습니다."));
+        // 작성자가 동일하지 않는 경우
+        if (!Objects.equals(comment.getUserid(), userid)) {
+            throw new IllegalArgumentException("작성자만 삭제할 수 있습니다.");
+        }
+
+        commentRepository.delete(comment);
     }
 
 }

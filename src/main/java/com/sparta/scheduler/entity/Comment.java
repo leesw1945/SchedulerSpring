@@ -4,9 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.math.BigInteger;
-import java.time.LocalDate;
-
 @Entity
 @Getter
 @Table(name = "comments")
@@ -25,7 +22,7 @@ public class Comment extends Timestamped {
     @JoinColumn(name = "scheduler_id")
     private Scheduler scheduler;
 
-    public Comment(String comment, String username, Scheduler scheduler) {
+    public Comment(String commentcontent, String userid, Scheduler scheduler) {
         this.commentcontent = commentcontent;
         this.userid = userid;
         this.scheduler = scheduler;
