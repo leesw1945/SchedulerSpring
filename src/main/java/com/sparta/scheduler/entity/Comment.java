@@ -11,23 +11,15 @@ import java.time.LocalDate;
 @Getter
 @Table(name = "comments")
 @NoArgsConstructor
-public class Comment {
+public class Comment extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private BigInteger id;
+    private Long id;
 
-    @Column(name = "commentcontent", nullable = false)
     private String commentcontent;
 
-    @Column(name = "userid", nullable = false)
     private String userid;
-
-    @Column(name = "dateid", nullable = false)
-    private BigInteger dateid;
-
-    @Column(name = "date")
-    private LocalDate date;
 
     @ManyToOne
     @JoinColumn(name = "scheduler_id")
