@@ -24,4 +24,10 @@ public class Comment extends Timestamped {
     @ManyToOne
     @JoinColumn(name = "scheduler_id")
     private Scheduler scheduler;
+
+    public Comment(String comment, String username, Scheduler scheduler) {
+        this.commentcontent = commentcontent;
+        this.userid = userid;
+        this.scheduler = scheduler;
+    }
 }
