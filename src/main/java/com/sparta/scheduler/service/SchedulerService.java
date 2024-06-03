@@ -64,6 +64,10 @@ public class SchedulerService {
         return id;
     }
 
+    public SchedulerResponseDto findById(long id) {
+        return SchedulerResponseDto.toDto(findScheduler(id));
+    }
+
     protected Scheduler findScheduler(Long id){
         return schedulerRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("선택한 일정은 존재하지 않습니다.")

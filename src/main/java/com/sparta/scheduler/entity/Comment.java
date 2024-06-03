@@ -30,4 +30,8 @@ public class Comment extends Timestamped {
         this.userid = userid;
         this.scheduler = scheduler;
     }
+
+    public void update(String commentcontent) {
+        this.commentcontent = commentcontent;
+    }
 }

@@ -2,6 +2,7 @@ package com.sparta.scheduler.controller;
 
 import com.sparta.scheduler.dto.CommentCreateRequestDto;
 import com.sparta.scheduler.dto.CommentResponseDto;
+import com.sparta.scheduler.dto.CommentUpdateRequestDto;
 import com.sparta.scheduler.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,15 @@ public class CommentController {
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 commentService.save(schedulerId, commentRequestDto)
         );
+    }
+
+    @PatchMapping("{commentId}")
+    public ResponseEntity<CommentResponseDto> update(
+            @PathVariable(name = "scheduleId") long scheduleId,
+            @PathVariable(name = "commentId") long commentId,
+            @RequestBody CommentUpdateRequestDto commentUpdateRequestDto) {
+
+        return ResponseEntity.ok().body(commentService.update(scheduleId, commentId, commentUpdateRequestDto));
     }
 
 }

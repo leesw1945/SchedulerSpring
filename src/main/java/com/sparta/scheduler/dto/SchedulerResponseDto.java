@@ -23,4 +23,21 @@ public class SchedulerResponseDto {
         this.createAt = scheduler.getCreatedAt();
         this.modifiedAt = scheduler.getModifiedAt();
     }
+
+    public SchedulerResponseDto(Long id, String title, String contents, String manager,
+                            LocalDateTime createAt) {
+        this.id = id;
+        this.title = title;
+        this.contents = contents;
+        this.manager = manager;
+        this.createAt = createAt;
+    }
+
+    public static SchedulerResponseDto toDto(Scheduler scheduler) {
+        return new SchedulerResponseDto(scheduler.getId(),
+                scheduler.getTitle(),
+                scheduler.getContents(),
+                scheduler.getManager(),
+                scheduler.getCreatedAt());
+    }
 }
